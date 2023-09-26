@@ -1,13 +1,14 @@
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Navbar from 'react-bootstrap/Navbar';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
 import Item from './components/Item';
 import axios from 'axios';
 
 import { useState, useEffect } from 'react';
+import Cart from './components/Cart';
 
 function App() {
     const [items, setItems] = useState([]);
@@ -20,23 +21,30 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar expand='lg'>
-                <Navbar.Brand className='pl-8'>My App</Navbar.Brand>
-            </Navbar>
+            <Container>
+                <h1>Vending Machine</h1>
+                <br />
+                <Row>
+                    <h4>Your Balance: 0 units</h4>
+                    <h4>Insert Coins:
+                        <ButtonGroup className='mx-2'>
+                            <Button variant="success">1 ₺</Button>
+                            <Button variant="success">2 ₺</Button>
+                            <Button variant="success">5 ₺</Button>
+                            <Button variant="success">10 ₺</Button>
+                        </ButtonGroup>
+                    </h4>
+                </Row>
 
-            <Container fluid>
-                <Row>
-                    <p>
-                        Your balance: 0
-                    </p>
+                <Row className="justify-content-md-center">
+                    {items.map((item) => (
+                        <Col key={item.id} xs={3}>
+                            <Item item={item} />
+                        </Col>
+                    ))}
+                    <Col> <Cart cart={items} /> </Col>
                 </Row>
-                <Row>
-                    <Col>Insert Money:</Col>
-                    {[1, 5, 10, 20].map(item => <Col key={item}> <Button>{item} ₺</Button></Col>)}
-                </Row>
-                <Row className='bg-dark p-2'>
-                    {items.map(item => <Col key={item.id} xs={12} md={4}><Item item={item} /></Col>)}
-                </Row>
+
             </Container>
         </div>
     );
