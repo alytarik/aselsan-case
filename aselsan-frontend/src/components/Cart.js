@@ -1,15 +1,27 @@
 import React from 'react';
 
-const Cart = ({ cart }) => {
+import { Card, Button } from 'react-bootstrap'
+
+const Cart = ({ cart, onRefundClick }) => {
     return (
-        <div>
-            <h1>Cart</h1>
-            <ul>
-                {cart.map((item) => (
-                    <li key={item.id}> {item.name} </li>
-                ))}
-            </ul>
-        </div>
+        <Card style={{ width: '18rem', height: '29rem' }}>
+            <Card.Body>
+                <Card.Title><h3>Bought Items</h3></Card.Title>
+                <Card.Text>
+
+                    {cart.length === 0 && <li>No items are bought.</li>}
+                    {cart.map((item, idx) => (
+                        <div className='d-flex justify-content-between' key={idx}>
+                            {item.name}
+                            <Button variant='danger' onClick={() => onRefundClick(idx)}>Refund</Button>
+                        </div>
+                    ))}
+
+                </Card.Text>
+                <Button variant="primary">Finish</Button>
+            </Card.Body>
+        </Card >
+
     );
 }
 
