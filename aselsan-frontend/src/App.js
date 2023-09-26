@@ -1,14 +1,12 @@
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button';
+import { Container, Col, Row, ButtonGroup, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 
-import Item from './components/Item';
 import axios from 'axios';
 
-import { useState, useEffect } from 'react';
+import Item from './components/Item';
 import Cart from './components/Cart';
+
+
 
 function App() {
     const [items, setItems] = useState([]);
