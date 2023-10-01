@@ -14,13 +14,14 @@ public class Item {
     private int price;
     private int defaultPrice;
 
-    public Item(String id, String name, String imgURL, int stock, int price) {
+    public Item(String id, String name, String imgURL, int stock, int price, int defaultPrice) {
         super();
         this.id = id;
         this.name = name;
         this.imgURL = imgURL;
         this.stock = stock;
         this.price = price;
+        this.defaultPrice = defaultPrice;
     }
 
     // Getters
