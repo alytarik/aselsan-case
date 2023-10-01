@@ -27,7 +27,7 @@ function Admin() {
                 <h1>Vending Machine</h1>
                 <br />
                 <Row>
-                    <h4>Money Collected: {balance} ₺</h4>
+                    <h4>Money Collected: 0 ₺</h4>
                     <h4>Insert Coins:
                     </h4>
                 </Row>
