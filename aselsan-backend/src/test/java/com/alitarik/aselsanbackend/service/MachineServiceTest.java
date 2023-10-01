@@ -64,7 +64,6 @@ class MachineServiceTest {
     @Test
     void testCollectMoney() {
         Machine oldMachine = new Machine("1", 100);
-        Machine newMachine = new Machine("1", 100);
         when(machineRepository.findAll()).thenReturn(Arrays.asList(oldMachine));
         when(machineRepository.save(any(Machine.class))).thenAnswer(i -> i.getArguments()[0]);
         Machine updatedMachine = machineService.collectMoney();
