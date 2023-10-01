@@ -3,7 +3,6 @@ package com.alitarik.aselsanbackend.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import com.alitarik.aselsanbackend.controller.MachineController;
 import com.alitarik.aselsanbackend.model.Machine;
 import com.alitarik.aselsanbackend.service.MachineService;
 

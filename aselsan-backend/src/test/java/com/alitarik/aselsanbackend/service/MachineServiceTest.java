@@ -1,3 +1,5 @@
+package com.alitarik.aselsanbackend.service;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -6,10 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.alitarik.aselsanbackend.model.Item;
 import com.alitarik.aselsanbackend.model.Machine;
-import com.alitarik.aselsanbackend.service.ItemService;
-import com.alitarik.aselsanbackend.service.MachineService;
 import com.alitarik.aselsanbackend.repository.MachineRepository;
 
 import java.util.Arrays;
