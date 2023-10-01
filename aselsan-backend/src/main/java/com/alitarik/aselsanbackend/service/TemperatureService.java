@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TemperatureService {
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 60000)
     public void checkTemperature() {
         System.out.println("====================================");
         System.out.println("Checking the temperature");
