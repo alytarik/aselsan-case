@@ -1,25 +1,30 @@
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Container, Row, Col } from 'react-bootstrap'
 
 const Cart = ({ cart, onRefundClick, onFinishClick }) => {
+    //display items in a scrollable list with a finish button at the bottom
+
     return (
-        <Card style={{ width: '18rem', height: '29rem' }}>
+        <Card style={{ width: '18rem' }}>
             <Card.Body>
-                <Card.Title><h3>Bought Items</h3></Card.Title>
+                <Card.Title>Bought Items</Card.Title>
                 <Card.Text>
-
-                    {cart.length === 0 && <li>No items are bought.</li>}
+                    {cart.length === 0 && 'No items are bought yet!'}
                     {cart.map((item, idx) => (
-                        <div className='d-flex justify-content-between' key={idx}>
-                            {item.name}
-                            <Button variant='danger' onClick={() => onRefundClick(idx)}>Refund</Button>
-                        </div>
+                        <Container key={idx}>
+                            <Row>
+                                <Col>{item.name}</Col>
+                                <Col>{item.price} ₺</Col>
+                                <Col><Button variant='danger' onClick={() => onRefundClick(idx)}>Refund</Button></Col>
+                            </Row>
+                        </Container>
                     ))}
-
                 </Card.Text>
-                <Button variant="primary" onClick={onFinishClick}>Finish</Button>
+                {
+                    cart.length !== 0 &&
+                    <Button variant='success' onClick={() => onFinishClick()}>Finish</Button>
+                }
             </Card.Body>
-        </Card >
-
+        </Card>
     );
 }
 

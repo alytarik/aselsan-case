@@ -1,15 +1,18 @@
-import { Container, Col, Row, ButtonGroup, Button } from 'react-bootstrap';
+import { Container, Col, Row, ButtonGroup, Button, Modal } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 import api from './api/axiosConfig'
 
 import Item from './components/Item';
 import Cart from './components/Cart';
+import OrderModal from './components/OrderModal';
 
 function App() {
     const [items, setItems] = useState([]);
     const [boughtItems, setBoughtItems] = useState([]);
     const [balance, setBalance] = useState(0);
+    const [showOrderModal, setShowOrderModal] = useState(false);
+    const [orderDetails, setOrderDetails] = useState({ items: [], change: 0 });
 
     const coins = [1, 5, 10, 20];
 
@@ -43,8 +46,26 @@ function App() {
     }
 
     const handleFinishClick = () => {
-        setBalance(0);
-        setBoughtItems([]);
+        let orderItems = [];
+        boughtItems.forEach((item) => {
+            const foundItem = orderItems.find((orderItem) => orderItem.id === item.id);
+            if (foundItem) {
+                foundItem.stock += 1;
+            } else {
+                orderItems.push({ ...item, stock: 1 });
+            }
+        });
+
+        api.post('orders/', { items: orderItems })
+            .then(() => {
+                setOrderDetails({ items: orderItems, change: balance });
+                setBalance(0);
+                setBoughtItems([]);
+                setShowOrderModal(true);
+            })
+            .catch(error => console.log(error));
+
+
     }
 
     return (
@@ -60,6 +81,7 @@ function App() {
                         </ButtonGroup>
                     </h4>
                 </Row>
+                <br />
 
                 <Row className="justify-content-md-center">
                     {items.map((item) => (
@@ -69,9 +91,11 @@ function App() {
                     ))}
                     <Col> <Cart cart={boughtItems} onRefundClick={(item) => handleRefundClick(item)} onFinishClick={() => handleFinishClick()} /> </Col>
                 </Row>
-
             </Container>
-        </div>
+
+            <OrderModal showModal={showOrderModal} setShowModal={(val) => setShowOrderModal(val)} orderDetails={orderDetails} />
+
+        </div >
     );
 }
 

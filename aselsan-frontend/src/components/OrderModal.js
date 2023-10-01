@@ -1,35 +1,35 @@
-import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const OrderModal = (onFinishClick) => {
-    const [show, setShow] = useState(false);
+const OrderModal = ({ showModal, setShowModal, orderDetails }) => {
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    function calculateTotal(items) {
+        return items.reduce((total, item) => total + (item.price * item.stock), 0);
+    }
 
     return (
-        <>
-            <Button variant="primary" onClick={handleShow}>
-                Finish
-            </Button>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+                <h4>Order is finished!</h4>
+                <br />
+                <p>Thank you for your purchase!</p>
+                <p>You have paid <b>{calculateTotal(orderDetails.items)} ₺</b> and you have <b>{orderDetails.change} ₺</b> change!</p>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </>
+                <p>You have bought:
+                    <ul>
+                        {orderDetails.items.map((item, idx) => (
+                            <li key={idx}>{item.name} x {item.stock}</li>
+                        ))}
+                    </ul></p>
+            </Modal.Body>
+
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowModal(false)}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 }
 
-export default Example;
+export default OrderModal;
