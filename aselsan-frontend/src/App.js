@@ -1,12 +1,10 @@
 import { Container, Col, Row, ButtonGroup, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
+import api from './api/axiosConfig'
 
 import Item from './components/Item';
 import Cart from './components/Cart';
-
-
 
 function App() {
     const [items, setItems] = useState([]);
@@ -16,7 +14,7 @@ function App() {
     const coins = [1, 5, 10, 20];
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/items/')
+        api.get('http://localhost:8080/api/v1/items/')
             .then(response => setItems(response.data))
             .catch(error => console.log(error));
     }, []);
