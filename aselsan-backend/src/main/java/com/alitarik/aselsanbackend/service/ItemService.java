@@ -45,4 +45,13 @@ public class ItemService {
         }
         return false;
     }
+
+    public void resetItems() {
+        List<Item> items = itemRepository.findAll();
+        for (Item item : items) {
+            item.setStock(0);
+            item.setPrice(item.getDefaultPrice());
+            itemRepository.save(item);
+        }
+    }
 }

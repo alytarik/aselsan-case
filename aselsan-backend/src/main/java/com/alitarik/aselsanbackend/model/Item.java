@@ -12,6 +12,7 @@ public class Item {
     private String imgURL;
     private int stock;
     private int price;
+    private int defaultPrice;
 
     public Item(String id, String name, String imgURL, int stock, int price) {
         super();
@@ -43,6 +44,10 @@ public class Item {
         return price;
     }
 
+    public int getDefaultPrice() {
+        return defaultPrice;
+    }
+
     // Setters
     public void setName(String name) {
         this.name = name;
@@ -60,4 +65,7 @@ public class Item {
         this.price = price;
     }
 
+    public void setDefaultPrice(int defaultPrice) {
+        this.defaultPrice = defaultPrice;
+    }
 }
