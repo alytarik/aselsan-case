@@ -1,6 +1,6 @@
 import { Card, Button } from 'react-bootstrap'
 
-const Cart = ({ cart, onRefundClick }) => {
+const Cart = ({ cart, onRefundClick, onFinishClick }) => {
     return (
         <Card style={{ width: '18rem', height: '29rem' }}>
             <Card.Body>
@@ -16,7 +16,7 @@ const Cart = ({ cart, onRefundClick }) => {
                     ))}
 
                 </Card.Text>
-                <Button variant="primary">Finish</Button>
+                <Button variant="primary" onClick={onFinishClick}>Finish</Button>
             </Card.Body>
         </Card >
 

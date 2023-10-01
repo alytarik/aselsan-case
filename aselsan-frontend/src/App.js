@@ -44,6 +44,11 @@ function App() {
         setBoughtItems(boughtItems.filter((item, index) => index !== idx));
     }
 
+    const handleFinishClick = () => {
+        setBalance(0);
+        setBoughtItems([]);
+    }
+
     return (
         <div className="App">
             <Container>
@@ -64,7 +69,7 @@ function App() {
                             <Item item={item} onBuyClick={() => handleBuyClick(item)} />
                         </Col>
                     ))}
-                    <Col> <Cart cart={boughtItems} onRefundClick={(item) => handleRefundClick(item)} /> </Col>
+                    <Col> <Cart cart={boughtItems} onRefundClick={(item) => handleRefundClick(item)} onFinishClick={() => handleFinishClick()} /> </Col>
                 </Row>
 
             </Container>
