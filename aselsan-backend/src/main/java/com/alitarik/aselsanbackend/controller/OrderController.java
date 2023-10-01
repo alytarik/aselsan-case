@@ -25,7 +25,6 @@ public class OrderController {
 
     @PostMapping("/")
     public ResponseEntity<?> createItem(@RequestBody List<Item> items) {
-        // check stock for every item in items and then create order
         for (Item item : items) {
             if (!itemService.checkStock(item)) {
                 return ResponseEntity.badRequest().body("Item " + item.getName() + " is out of stock");
