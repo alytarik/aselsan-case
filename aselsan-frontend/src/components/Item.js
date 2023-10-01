@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 const Item = ({ item, onBuyClick }) => {
     return (
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={"https://picsum.photos/" + (300 + item.price)} />
+            <Card.Img variant="top" src={item.imgURL} />
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
