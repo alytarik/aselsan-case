@@ -7,7 +7,7 @@ import ItemAdmin from './components/ItemAdmin';
 
 function Admin() {
     const [items, setItems] = useState([]);
-    const [balance, setBalance] = useState(0);
+    // const [balance, setBalance] = useState(0);
 
     useEffect(() => {
         api.get('items/')
