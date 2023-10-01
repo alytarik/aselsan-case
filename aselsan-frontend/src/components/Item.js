@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Item = ({ item, onBuyClick }) => {
     return (
-        <Card>
+        <Card style={{ height: '30rem' }}>
             <Card.Img className='p-4' variant="top" src={item.imgURL} />
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>

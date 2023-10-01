@@ -9,7 +9,7 @@ import OrderModal from './components/OrderModal';
 
 function App() {
     const [items, setItems] = useState([]);
-    const [boughtItems, setBoughtItems] = useState([]);
+    const [itemsInCart, setItemsInCart] = useState([]);
     const [balance, setBalance] = useState(0);
     const [showOrderModal, setShowOrderModal] = useState(false);
     const [orderDetails, setOrderDetails] = useState({ items: [], change: 0 });
@@ -38,20 +38,20 @@ function App() {
         setBalance(balance - item.price);
         item.stock -= 1;
         setItems([...items]);
-        setBoughtItems([item, ...boughtItems]);
+        setItemsInCart([item, ...itemsInCart]);
     }
 
     const handleRefundClick = (idx) => {
-        const refundItem = boughtItems[idx]
+        const refundItem = itemsInCart[idx]
         setBalance(balance + refundItem.price);
         refundItem.stock += 1;
         setItems([...items]);
-        setBoughtItems(boughtItems.filter((item, index) => index !== idx));
+        setItemsInCart(itemsInCart.filter((item, index) => index !== idx));
     }
 
     const handleFinishClick = () => {
         let orderItems = [];
-        boughtItems.forEach((item) => {
+        itemsInCart.forEach((item) => {
             const foundItem = orderItems.find((orderItem) => orderItem.id === item.id);
             if (foundItem) {
                 foundItem.stock += 1;
@@ -64,7 +64,7 @@ function App() {
             .then(() => {
                 setOrderDetails({ items: orderItems, change: balance });
                 setBalance(0);
-                setBoughtItems([]);
+                setItemsInCart([]);
                 setShowOrderModal(true);
             })
             .catch(error => console.log(error));
@@ -87,13 +87,13 @@ function App() {
                 </Row>
                 <br />
 
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center" >
                     {items.map((item) => (
                         <Col key={item.id} xs={3}>
                             <Item item={item} onBuyClick={() => handleBuyClick(item)} />
                         </Col>
                     ))}
-                    <Col> <Cart cart={boughtItems} onRefundClick={(item) => handleRefundClick(item)} onFinishClick={() => handleFinishClick()} /> </Col>
+                    <Col style={{ height: '30rem' }}> <Cart cart={itemsInCart} onRefundClick={(item) => handleRefundClick(item)} onFinishClick={() => handleFinishClick()} /> </Col>
                 </Row>
             </Container>
 
