@@ -49,8 +49,8 @@ public class OrderControllerTest {
         when(itemService.checkStock(item2)).thenReturn(true);
         when(itemService.getItemById(item1.getId())).thenReturn(item1);
         when(itemService.getItemById(item2.getId())).thenReturn(item2);
-        when(itemService.updateItem(item1.getId(), item1)).thenReturn(item1);
-        when(itemService.updateItem(item2.getId(), item2)).thenReturn(item2);
+        when(itemService.updateItem(item1)).thenReturn(item1);
+        when(itemService.updateItem(item2)).thenReturn(item2);
 
         ResponseEntity<?> response = orderController.createOrder(itemList);
 

@@ -75,7 +75,7 @@ public class ItemControllerTest {
     @Test
     public void testUpdateItem() {
         Item item = new Item("1", "item1", "imgurl1", 1, 2, 5);
-        when(itemService.updateItem(anyString(), any(Item.class))).thenReturn(item);
+        when(itemService.updateItem(any(Item.class))).thenReturn(item);
 
         Item result = itemController.updateItem("1", item);
 

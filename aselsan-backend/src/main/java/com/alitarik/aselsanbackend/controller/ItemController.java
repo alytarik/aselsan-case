@@ -40,7 +40,7 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public Item updateItem(@PathVariable String id, @RequestBody Item item) {
-        return itemService.updateItem(id, item);
+        return itemService.updateItem(item);
     }
 
     @DeleteMapping("/{id}")

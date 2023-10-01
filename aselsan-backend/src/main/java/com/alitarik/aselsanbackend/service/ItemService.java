@@ -26,8 +26,8 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public Item updateItem(String id, Item item) {
-        Item itemToUpdate = itemRepository.findItemById(id);
+    public Item updateItem(Item item) {
+        Item itemToUpdate = itemRepository.findItemById(item.getId());
         itemToUpdate.setName(item.getName());
         itemToUpdate.setStock(item.getStock());
         itemToUpdate.setPrice(item.getPrice());

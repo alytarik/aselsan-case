@@ -28,7 +28,7 @@ public class OrderController {
         for (Item item : items.getItems()) {
             Item itemInDb = itemService.getItemById(item.getId());
             itemInDb.setStock(itemInDb.getStock() - item.getStock());
-            itemService.updateItem(item.getId(), itemInDb);
+            itemService.updateItem(itemInDb);
         }
         return ResponseEntity.ok().build();
     }
