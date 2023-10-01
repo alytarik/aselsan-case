@@ -1,7 +1,6 @@
 import { Button, Card, Form } from 'react-bootstrap';
 import { useState } from 'react';
-
-// admin controller for item to set its price and stock without buy functionality
+import PropTypes from 'prop-types'
 
 const ItemAdmin = ({ item, onSaveClick }) => {
 
@@ -46,5 +45,15 @@ const ItemAdmin = ({ item, onSaveClick }) => {
         </Card >
     );
 }
+
+ItemAdmin.propTypes = {
+    item: PropTypes.shape({
+        imgURL: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        stock: PropTypes.number.isRequired,
+    }).isRequired,
+    onSaveClick: PropTypes.func.isRequired,
+};
 
 export default ItemAdmin;

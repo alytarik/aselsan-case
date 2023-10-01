@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import PropTypes from 'prop-types';
 
 const OrderModal = ({ showModal, setShowModal, orderDetails }) => {
 
@@ -30,6 +31,20 @@ const OrderModal = ({ showModal, setShowModal, orderDetails }) => {
             </Modal.Footer>
         </Modal>
     );
+}
+
+OrderModal.propTypes = {
+    showModal: PropTypes.bool.isRequired,
+    setShowModal: PropTypes.func.isRequired,
+    orderDetails: PropTypes.shape({
+        items: PropTypes.arrayOf(PropTypes.shape({
+            imgURL: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            stock: PropTypes.number.isRequired,
+        })).isRequired,
+        change: PropTypes.number.isRequired,
+    }).isRequired,
 }
 
 export default OrderModal;

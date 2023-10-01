@@ -1,4 +1,5 @@
 import { Card, Button, Container, Row, Col } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 const Cart = ({ cart, onRefundClick, onFinishClick }) => {
     //display items in a scrollable list with a finish button at the bottom
@@ -26,6 +27,17 @@ const Cart = ({ cart, onRefundClick, onFinishClick }) => {
             </Card.Body>
         </Card>
     );
+}
+
+Cart.propTypes = {
+    cart: PropTypes.arrayOf(PropTypes.shape({
+        imgURL: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        stock: PropTypes.number.isRequired,
+    })).isRequired,
+    onRefundClick: PropTypes.func.isRequired,
+    onFinishClick: PropTypes.func.isRequired,
 }
 
 export default Cart;

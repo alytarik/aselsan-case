@@ -1,9 +1,10 @@
 import { Button, Card } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const Item = ({ item, onBuyClick }) => {
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.imgURL} />
+        <Card>
+            <Card.Img className='p-4' variant="top" src={item.imgURL} />
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
@@ -15,5 +16,15 @@ const Item = ({ item, onBuyClick }) => {
         </Card >
     );
 }
+
+Item.propTypes = {
+    item: PropTypes.shape({
+        imgURL: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        stock: PropTypes.number.isRequired,
+    }).isRequired,
+    onBuyClick: PropTypes.func.isRequired,
+};
 
 export default Item;
