@@ -11,3 +11,11 @@ will affect positively.
 - Allow user to take refund
 - Allow owner to reset, collect money, add to stocks, change price
 - Check temperature periodically
+
+## BUILDING AND RUNNING
+- Clone the repository
+- Navigate to `aselsan-frontend` directory
+- Run `npm install` to install dependencies
+- Run `npm start` to start the frontend server
+- Navigate to `aselsan-backend` directory
+- Run `gradlew bootRun` to start the backend server
