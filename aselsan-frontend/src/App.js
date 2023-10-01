@@ -17,7 +17,7 @@ function App() {
     const coins = [1, 5, 10, 20];
 
     useEffect(() => {
-        api.get('http://localhost:8080/api/v1/items/')
+        api.get('items/')
             .then(response => setItems(response.data))
             .catch(error => console.log(error));
     }, []);
