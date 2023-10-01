@@ -1,13 +1,17 @@
 package com.alitarik.aselsanbackend.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import com.alitarik.aselsanbackend.model.Item;
 import com.alitarik.aselsanbackend.model.ItemList;
+import com.alitarik.aselsanbackend.model.Machine;
 import com.alitarik.aselsanbackend.service.ItemService;
+import com.alitarik.aselsanbackend.service.MachineService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,6 +28,9 @@ public class OrderControllerTest {
 
     @Mock
     private ItemService itemService;
+
+    @Mock
+    private MachineService machineService;
 
     @InjectMocks
     private OrderController orderController;
@@ -45,13 +52,15 @@ public class OrderControllerTest {
         ItemList itemList = new ItemList();
         itemList.setItems(items);
 
+        Machine machine = new Machine("1", 100);
+
         when(itemService.checkStock(item1)).thenReturn(true);
         when(itemService.checkStock(item2)).thenReturn(true);
         when(itemService.getItemById(item1.getId())).thenReturn(item1);
         when(itemService.getItemById(item2.getId())).thenReturn(item2);
         when(itemService.updateItem(item1)).thenReturn(item1);
         when(itemService.updateItem(item2)).thenReturn(item2);
-
+        when(machineService.addMoney(anyInt())).thenReturn(machine);
         ResponseEntity<?> response = orderController.createOrder(itemList);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
