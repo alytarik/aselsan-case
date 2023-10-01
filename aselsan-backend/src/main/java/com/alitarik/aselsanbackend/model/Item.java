@@ -9,14 +9,17 @@ public class Item {
     private String id;
 
     private String name;
+    private String imgURL;
     private int stock;
     private int price;
 
-    public Item(String id, String name, int stock) {
+    public Item(String id, String name, String imgURL, int stock, int price) {
         super();
         this.id = id;
         this.name = name;
+        this.imgURL = imgURL;
         this.stock = stock;
+        this.price = price;
     }
 
     // Getters
@@ -26,6 +29,10 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public String getImgURL() {
+        return imgURL;
     }
 
     public int getStock() {
@@ -39,6 +46,10 @@ public class Item {
     // Setters
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
     }
 
     public void setStock(int stock) {
