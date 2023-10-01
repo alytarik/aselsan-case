@@ -19,7 +19,7 @@ const ItemAdmin = ({ item, onSaveClick }) => {
     const handleSaveClick = () => {
         item.price = price;
         item.stock = stock;
-        onSaveClick(item);
+        onSaveClick();
     }
 
     return (
@@ -28,8 +28,8 @@ const ItemAdmin = ({ item, onSaveClick }) => {
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
-                    Price: {item.price} <br />
-                    In Stock: {item.stock}
+                    Price: {item.price} ₺<br />
+                    Stock: {item.stock}
                 </Card.Text>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -40,7 +40,7 @@ const ItemAdmin = ({ item, onSaveClick }) => {
                         <Form.Label>Stock</Form.Label>
                         <Form.Control type="number" placeholder="0" value={stock} onChange={handleStockChange} />
                     </Form.Group>
-                    <Button variant="primary" onClick={handleSaveClick}>Save</Button>
+                    <Button variant="primary" onClick={() => handleSaveClick()}>Save</Button>
                 </Form>
             </Card.Body>
         </Card >

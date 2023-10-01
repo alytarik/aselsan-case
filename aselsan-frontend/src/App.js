@@ -31,6 +31,10 @@ function App() {
             alert("Not enough balance!");
             return;
         }
+        if (item.stock <= 0) {
+            alert("There is no items left!");
+            return;
+        }
         setBalance(balance - item.price);
         item.stock -= 1;
         setItems([...items]);
