@@ -37,4 +37,12 @@ public class ItemService {
     public void deleteItem(String id) {
         itemRepository.deleteById(id);
     }
+
+    public Boolean checkStock(Item item) {
+        Item itemInDb = itemRepository.findItemById(item.getId());
+        if (itemInDb.getStock() >= item.getStock()) {
+            return true;
+        }
+        return false;
+    }
 }
