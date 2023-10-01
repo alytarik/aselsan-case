@@ -11,6 +11,10 @@ import com.alitarik.aselsanbackend.model.Item;
 import com.alitarik.aselsanbackend.model.ItemList;
 import com.alitarik.aselsanbackend.service.ItemService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Orders", description = "The Order API")
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderController {
@@ -18,7 +22,8 @@ public class OrderController {
     @Autowired
     private ItemService itemService;
 
-    @PostMapping("/")
+    @Operation(summary = "Create an order with given list of items")
+    @PostMapping(value = "/", consumes = "application/json")
     public ResponseEntity<?> createOrder(@RequestBody ItemList items) {
         for (Item item : items.getItems()) {
             if (!itemService.checkStock(item)) {

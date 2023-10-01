@@ -16,33 +16,42 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alitarik.aselsanbackend.model.Item;
 import com.alitarik.aselsanbackend.service.ItemService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/v1/items")
+@Tag(name = "Items", description = "The Item API")
 public class ItemController {
 
     @Autowired
     private ItemService itemService;
 
+    @Operation(summary = "Get all items")
     @GetMapping("/")
     public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
 
+    @Operation(summary = "Get an item by id")
     @GetMapping("/{id}")
     public Item getItemById(@PathVariable String id) {
         return itemService.getItemById(id);
     }
 
-    @PostMapping("/")
+    @Operation(summary = "Create an item")
+    @PostMapping(value = "/", consumes = "application/json")
     public Item createItem(@RequestBody Item item) {
         return itemService.createItem(item);
     }
 
-    @PutMapping("/{id}")
+    @Operation(summary = "Update an item")
+    @PutMapping(value = "/{id}", consumes = "application/json")
     public Item updateItem(@PathVariable String id, @RequestBody Item item) {
         return itemService.updateItem(item);
     }
 
+    @Operation(summary = "Delete an item")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteItem(@PathVariable String id) {
         itemService.deleteItem(id);
