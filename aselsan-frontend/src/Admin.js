@@ -23,7 +23,7 @@ function Admin() {
 
     const handleSaveClick = (item) => {
         api.put(`items/${item.id}`, item)
-            .then(response => console.log(response))
+            .then(response => alert("Item updated!"))
             .catch(error => console.log(error));
     }
 
