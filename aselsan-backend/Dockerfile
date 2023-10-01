@@ -7,7 +7,7 @@ RUN gradle build --no-daemon
 
 # run step for spring boot application using gradle
 
-FROM openjdk:17-jre-slim
+FROM openjdk:17-jdk-alpine
 EXPOSE 8080
 RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/aselsan-backend.jar
