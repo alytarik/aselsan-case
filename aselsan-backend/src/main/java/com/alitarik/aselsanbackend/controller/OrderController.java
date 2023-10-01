@@ -19,7 +19,7 @@ public class OrderController {
     private ItemService itemService;
 
     @PostMapping("/")
-    public ResponseEntity<?> createItem(@RequestBody ItemList items) {
+    public ResponseEntity<?> createOrder(@RequestBody ItemList items) {
         for (Item item : items.getItems()) {
             if (!itemService.checkStock(item)) {
                 return ResponseEntity.badRequest().body("Item " + item.getName() + " is out of stock");
